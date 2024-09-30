@@ -19,11 +19,15 @@ public class Http2Client {
 
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
-                System.out.println(response.body().string());
+                System.out.println("Response: " + response.body().string());
             } else {
                 System.err.println("Request failed: " + response);
             }
         } catch (IOException e) {
+            System.err.println("IOException occurred: " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Unexpected error occurred: " + e.getMessage());
             e.printStackTrace();
         }
     }
